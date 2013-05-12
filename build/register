@@ -1,0 +1,79 @@
+#! /bin/bash
+# usage ./register [parameter file]
+# parameter file is optional if not provided it will
+# look for the file param.dat in the current directory
+
+file_read() # reading parameter file
+{
+	FILENAME=$1
+	count=0
+	cat $FILENAME | while read LINE
+	do
+	    let count++
+		if [ "$count" -le "7" ]
+		then
+	       	filename=$(basename "$LINE")
+	       	ext="${filename##*.}"
+	       	if [ "$ext" == "dcm" ] # if dicom file 
+	       	then
+	       			filename="${filename%.*}" 
+	       			newext=".mha"
+		    		directory=$(dirname "$LINE")
+		    		filename=$directory$filename$newext
+		    		echo "converting dicom file to .mha ...."
+		    		./DicomRead $directory $filename  # invoce the dicom series converter 
+		    		sed -i "s|$LINE|${filename}|g" $FILENAME
+		    		
+		    fi
+		fi
+	done
+}
+
+usage ()
+{
+    echo "Usage - $0  [parameter file Name]"
+    exit 1
+}
+
+is_file_exits()
+{
+	local f="$1"
+	if [ -f "$f" ]
+	then 
+	 	return 0 
+	else
+		 return 1
+	fi
+}
+
+if [ $# -gt 1 ] 
+then 
+	usage
+fi
+
+if [ -z $1 ]
+	then
+	if (!(is_file_exits "param.dat"))
+		then echo "parameter file not exists\n"
+			 usage
+	else
+		file_read "param.dat"
+		echo "Applying Multi Resolution Registration using param.dat parameter file ..."
+		echo "-------------------------------------------------------------------------"
+		./MultiResImageRegistrationMattes
+
+	fi
+else
+	if (!(is_file_exits "$1"))
+		then echo "parameter file not exists\n"
+			 usage
+	else
+		file_read "$1"
+		echo "Applying Multi Resolution Registration using $1 as parameter file..."
+		echo "-------------------------------------------------------------------------"
+		./MultiResImageRegistrationMattes $1
+
+	fi 
+fi
+
+

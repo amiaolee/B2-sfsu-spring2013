@@ -48,4 +48,3 @@ target_link_libraries(MultiResImageRegistrationMattes ${ITK_LIBRARIES})
 
 add_executable(DicomRead DicomRead.cxx )
 target_link_libraries(DicomRead ${ITK_LIBRARIES})
-
