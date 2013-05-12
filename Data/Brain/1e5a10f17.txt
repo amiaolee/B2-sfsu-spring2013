@@ -1,0 +1,10 @@
+BrainWeb download: T2 ICBM normal 1mm pn3 rf20
+Modality=T2, Protocol=ICBM, Phantom_name=normal, Slice_thickness=1mm, Noise=3%, INU=20% 
+MINC volume info: 
+image: signed__ short 0 to 4095
+image dimensions: zspace yspace xspace
+    dimension name         length         step        start
+    --------------         ------         ----        -----
+    zspace                    181            1          -72
+    yspace                    217            1         -126
+    xspace                    181            1          -90
