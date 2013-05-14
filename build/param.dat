@@ -1,10 +1,10 @@
-../Data/Brain/R20T20/brainweb1e1a10f20.mha
-../Data/Brain/R20T20/brainweb1e1a10f20Rot20Tx20.mha
-../output/R20T20/Brain_registered128.mha
-../output/R20T20/checkboard_before128.png
-../output/R20T20/checkboard_after128.png
-../output/R20T20/diff_before128.mha
-../output/R20T20/diff_after128.mha
+../Data/Brain/brainweb1e1a10f20.mha
+../Data/Brain/brainweb1e1a10f20Rot20Tx20.mha
+../output/Brain_registered128.mha
+../output/checkboard_before128.png
+../output/checkboard_after128.png
+../output/diff_before128.mha
+../output/diff_after128.mha
 400
 400
 0.99
