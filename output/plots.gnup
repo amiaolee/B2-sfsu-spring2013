@@ -1,0 +1,10 @@
+set terminal postscript portrait color font "Times-Roman,10"
+
+set xlabel "Number Of Bins."
+set ylabel "Metric "
+
+set output "Bins&Metric.eps"
+plot "results.txt" using 2:1 notitle with lines lt 1,\
+"results.txt" using 2:1 notitle with points lt 0 pt 3 ps 1
+ 
+

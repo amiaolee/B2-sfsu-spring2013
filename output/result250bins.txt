@@ -1,0 +1,5 @@
+nslation X = 2.13178
+ Translation Y = -17.5134
+ Translation Z = 0.250846
+ Iterations    = 98
+ Metric value  = -0.884281

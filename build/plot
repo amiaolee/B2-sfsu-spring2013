@@ -1,0 +1,16 @@
+#! /bin/bash
+
+#
+# Execute the example and capture the output.
+#
+#./register | tee registrationOutput.txt
+
+#
+# clean the output and make it ready to be used by gnuplot for ploting  
+sed -n '/MultiResolution Level : 3/,/MultiResolution Level : 4/p' registrationOutput.txt | tail -n +3 | head -n -2 > registrationclean.txt
+sed "s/\]/ /g" registrationclean.txt | sed "s/\,/ /g" | sed "s/\[/ /g" > registrationOutputCleaned.txt
+#
+# Take the metric and translation data and generate plots with GNUPlot
+#
+gnuplot RegistrationFigures.gnup
+

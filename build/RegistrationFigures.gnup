@@ -1,0 +1,19 @@
+set terminal postscript portrait color font "Times-Roman,10"
+
+set xlabel "Iteration No."
+set ylabel "Metric "
+
+set output "RegistrationMetric.eps"
+plot "registrationOutputCleaned.txt" using 1:2 notitle with lines lt 1,\
+"registrationOutputCleaned.txt" using 1:2 notitle with points lt 0 pt 3 ps 1
+ 
+set xlabel "X Translations (mm)"
+set ylabel "Y Translations (mm)"
+#set zlabel "Z Translations (mm)"
+
+set parametric
+set size square
+
+set output "RegistrationTranslations.eps"
+plot "registrationOutputCleaned.txt" using 3:4 notitle with lines lt 1, \
+"registrationOutputCleaned.txt" using 3:4 notitle with points lt 0 pt 3 ps 1
