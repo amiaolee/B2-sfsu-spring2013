@@ -60,7 +60,7 @@ if [ -z $1 ]
 		file_read "param.dat"
 		echo "Applying Multi Resolution Registration using param.dat parameter file ..."
 		echo "-------------------------------------------------------------------------"
-		./MultiResImageRegistrationMattes
+		./MultiResImageRegistrationMattes | tee registrationOutput.txt
 
 	fi
 else
@@ -71,7 +71,7 @@ else
 		file_read "$1"
 		echo "Applying Multi Resolution Registration using $1 as parameter file..."
 		echo "-------------------------------------------------------------------------"
-		./MultiResImageRegistrationMattes $1
+		./MultiResImageRegistrationMattes $1 | tee registrationOutput.txt
 
 	fi 
 fi

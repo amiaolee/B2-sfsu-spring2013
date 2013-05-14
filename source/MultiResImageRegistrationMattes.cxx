@@ -92,8 +92,8 @@
           }
         else
           {
-          optimizer->SetMaximumStepLength( optimizer->GetMaximumStepLength() / 4.0 );
-          optimizer->SetMinimumStepLength( optimizer->GetMinimumStepLength() / 10.0 );
+           optimizer->SetMaximumStepLength( optimizer->GetMaximumStepLength() / 4.0 );
+           optimizer->SetMinimumStepLength( optimizer->GetMinimumStepLength() / 10.0 );
           }
         }
 
@@ -237,7 +237,7 @@
       fixedCaster->Update();
 
       registration->SetFixedImageRegion(
-           fixedCaster->GetOutput()->GetBufferedRegion() );
+      fixedCaster->GetOutput()->GetBufferedRegion() );
 
 
       typedef RegistrationType::ParametersType ParametersType;
@@ -403,7 +403,7 @@
       intensityRescaler->SetOutputMaximum( 255 );
       difference->SetInput1( fixedImageReader->GetOutput() );
       difference->SetInput2( resample->GetOutput() );
-      resample->SetDefaultPixelValue( 0 );
+      resample->SetDefaultPixelValue( 1 );
       WriterType::Pointer writer2 = WriterType::New();
       writer2->SetInput( intensityRescaler->GetOutput() );
 
