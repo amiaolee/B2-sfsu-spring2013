@@ -14,7 +14,7 @@ it made use of ITK image registration modules. Basic modules used in this projec
     1. all the source files are in source folder
     2. example 3D volumes in mha format are provided in the Data folder 
     3. output folder is used to store registration output files
-    4.build contains executables
+    4. build contains executables
 
 ###How to Compile
     1. follow all the necessary steps used to build ITK project using cmake provide source 
