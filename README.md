@@ -1,6 +1,6 @@
 ###Intensity Based 3D Image Registration Using Maximization of Mutual Information
 
-intensity based 3D rigid medical image registration using mutual information maximization algorithm.
+Intensity based 3D rigid medical image registration using mutual information maximization algorithm.
 It is developed as a Term Project for the course CSC621-821 in Spring 2013 at San Francisco State University.
 it made use of ITK image registration modules. Basic modules used in this project includes:
 
@@ -51,7 +51,7 @@ it made use of ITK image registration modules. Basic modules used in this projec
        registration,Mosaiv view after registration) the 2D images can be viewed any image viewer application. 
        But to view 3D volumes you need 3D viewer softwares.
 ***
-###3D Volume Viewers
-1.[ITK-SNAP](http://www.itksnap.org/pmwiki/pmwiki.php?n=Main.Downloads) <br>
-2.[ImageJ](http://rsbweb.nih.gov/ij/download.html) <br>
-3.[paraview](http://www.paraview.org/paraview/resources/software.php) <br>
+####3D Volume Viewers
+1. [ITK-SNAP](http://www.itksnap.org/pmwiki/pmwiki.php?n=Main.Downloads) <br>
+2. [ImageJ](http://rsbweb.nih.gov/ij/download.html) <br>
+3. [paraview](http://www.paraview.org/paraview/resources/software.php) <br>
