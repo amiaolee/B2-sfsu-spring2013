@@ -1,0 +1,23 @@
+#gnu plot script used to plot the behaviour of the 
+#optimizer during the optimization process
+#it reads the cleaned version of the registration algorithm 
+#output as the input for ploting
+
+set terminal postscript portrait color font "Times-Roman,10"
+
+set xlabel "Iteration No."
+set ylabel "Metric "
+
+set output "../output/RegistrationMetric.eps"
+plot "registrationOutputCleaned.txt" using 1:2 notitle with lines lt 1,\
+"registrationOutputCleaned.txt" using 1:2 notitle with points lt 0 pt 3 ps 1
+ 
+set xlabel "X Translations (mm)"
+set ylabel "Y Translations (mm)"
+
+set parametric
+set size square
+
+set output "../output/RegistrationTranslations.eps"
+plot "registrationOutputCleaned.txt" using 3:4 notitle with lines lt 1, \
+"registrationOutputCleaned.txt" using 3:4 notitle with points lt 0 pt 3 ps 1

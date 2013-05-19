@@ -36,7 +36,7 @@
 
     #include "itkCommand.h"
 
-    int parseParamFile(std::string);
+    int parseParamFile(std::string); // function to parse the parameter file 
 
     std::string fixedFileName ;
     std::string movingFileName ; 
@@ -87,11 +87,13 @@
 
         if ( registration->GetCurrentLevel() == 0 )
           {
-          optimizer->SetMaximumStepLength( 16.00 );
+            // // first resolution level
+          optimizer->SetMaximumStepLength( 16.00 );  
           optimizer->SetMinimumStepLength( 0.01 );
           }
         else
           {
+            // Subsequent levels 
            optimizer->SetMaximumStepLength( optimizer->GetMaximumStepLength() / 4.0 );
            optimizer->SetMinimumStepLength( optimizer->GetMinimumStepLength() / 10.0 );
           }
@@ -151,13 +153,13 @@
         return EXIT_FAILURE;
         }
 
-        std::string paramfileName("param.dat");
+        std::string paramfileName("param.dat"); 
         if(argc > 1)
         {
           paramfileName = argv[1];
         }
 
-      parseParamFile(paramfileName);
+      parseParamFile(paramfileName); // read parameter file
 
       const    unsigned int    Dimension = 3;
       typedef  unsigned short  PixelType;
@@ -188,7 +190,7 @@
                                         InternalImageType >   MovingImagePyramidType;
 
 
-      //  All the components are instantiated using their \code{New()} method
+      //  All the components are instantiated using their New() method
       //  and connected to the registration object as in previous example.
       //
       TransformType::Pointer      transform     = TransformType::New();
@@ -216,8 +218,8 @@
       FixedImageReaderType::Pointer  fixedImageReader  = FixedImageReaderType::New();
       MovingImageReaderType::Pointer movingImageReader = MovingImageReaderType::New();
 
-      fixedImageReader-> SetFileName(fixedFileName);
-      movingImageReader->SetFileName(movingFileName);
+      fixedImageReader-> SetFileName(fixedFileName); // fixed volume
+      movingImageReader->SetFileName(movingFileName); // moving volume
 
       typedef itk::CastImageFilter<
                             FixedImageType, InternalImageType > FixedCastFilterType;
@@ -250,17 +252,17 @@
       registration->SetInitialTransformParameters( initialParameters );
 
       
-      metric->SetNumberOfSpatialSamples( 50000 );
+      metric->SetNumberOfSpatialSamples( 50000 ); // defualt used number of spatial samples
 
-      metric->SetNumberOfHistogramBins( numBins );
+      metric->SetNumberOfHistogramBins( numBins ); // histogram bins
 
       
       metric->ReinitializeSeed( 76926294 );
 
 
-      optimizer->SetNumberOfIterations( numIters );
+      optimizer->SetNumberOfIterations( numIters ); // maximum number of iterations 
       
-      optimizer->SetRelaxationFactor( relRate);
+      optimizer->SetRelaxationFactor( relRate); // learning rate 
 
       std::cout << "------------------------------"<<std::endl;
 
@@ -277,7 +279,7 @@
       registration->AddObserver( itk::IterationEvent(), command );
 
 
-      registration->SetNumberOfLevels( resLevels);
+      registration->SetNumberOfLevels( resLevels); // resolution levels
 
       try
         {
@@ -388,6 +390,7 @@
       writer->SetFileName( checkBoardAfterFileName);
       writer->Update();
       
+      // generate difference image before and after registration
       typedef itk::SubtractImageFilter<
                                       FixedImageType,
                                       FixedImageType,
@@ -407,9 +410,11 @@
       WriterType::Pointer writer2 = WriterType::New();
       writer2->SetInput( intensityRescaler->GetOutput() );
 
+        // difference before registration
       writer2->SetFileName( diffbeforeFileName);
       writer2->Update();
       
+      // Difference after registration
       resample->SetTransform( identityTransform );
       writer2->SetFileName( diffAfterFileName);
       writer2->Update();
@@ -445,7 +450,7 @@
           std::cerr <<  "Could not find fixed image filename." << std::endl;
         }
       fixedFileName = currentLine;
-      std::cout << "Fixed image filename: " << fixedFileName << std::endl;
+      std::cout << "Fixed 3D volume filename: " << fixedFileName << std::endl;
 
       /************************************
        * Parse moving image information
@@ -456,7 +461,7 @@
           std::cerr << "Could not find moving image filename." << std::endl;
         }
        movingFileName = currentLine;
-       std::cout << "Moving image filename: " << movingFileName << std::endl;
+       std::cout << "Moving 3D volume filename: " << movingFileName << std::endl;
 
       /************************************
        * Parse output image information
@@ -467,7 +472,7 @@
           std::cerr << "Could not find output image filename." << std::endl;
         }
         outputFileName = currentLine;
-        std::cout << "output image filename: " << outputFileName << std::endl;
+        std::cout << "output 3D volume filename: " << outputFileName << std::endl;
 
 
       /************************************
@@ -479,7 +484,7 @@
           std::cerr << "Could not find checkboard before image filename." << std::endl;
         }
         checkBoardBeforeFileName = currentLine;
-        std::cout << "checkBoardBefore image filename: " << checkBoardBeforeFileName << std::endl;
+        std::cout << "checkBoardBefore 2D image filename: " << checkBoardBeforeFileName << std::endl;
       
       // get checkboard after image file name
       if( fscanf( paramFile, "%s", currentLine ) != 1 ) 
@@ -487,7 +492,7 @@
           std::cerr <<  "Could not find checkboard image filename." << std::endl;
         }
         checkBoardAfterFileName = currentLine;
-        std::cout << "checkBoardAfter image filename: " << checkBoardAfterFileName << std::endl;
+        std::cout << "checkBoardAfter 2D image filename: " << checkBoardAfterFileName << std::endl;
       /************************************
        * Parse difference image inforamtion
        ************************************/
@@ -497,7 +502,7 @@
           std::cerr <<  "Could not find difference before image filename." << std::endl;
         }
         diffbeforeFileName = currentLine;
-        std::cout << "differencebefore volume filename: " << diffbeforeFileName << std::endl;
+        std::cout << "differencebefore 3D volume filename: " << diffbeforeFileName << std::endl;
       
       // get difference after image file name
       if( fscanf( paramFile, "%s", currentLine ) != 1 ) 
@@ -505,12 +510,12 @@
           std::cerr << "Could not find difference after image filename." << std::endl;
         }
         diffAfterFileName = currentLine;
-        std::cout << "differenceAfter volume filename: " << diffAfterFileName << std::endl;
+        std::cout << "differenceAfter 3D volume filename: " << diffAfterFileName << std::endl;
 
       /************************************
        * Parse registration parameters
        ************************************/
-      // get number of levels
+      // get number of Histogram Bins
       std::cout << "Number of Bins: ";
       if( fscanf( paramFile, "%d", &numBins) != 1 )
         {
@@ -526,15 +531,16 @@
         }
        std::cout << numIters << std::endl;
 
-     std::cout << "Relaxation Rate: ";
+       // get relaxation rate 
+     std::cout << "Relaxation (Learning ) Rate: ";
       if( fscanf( paramFile, "%f", &relRate) != 1 )
         {
           std::cerr << "Could not find the relaxation rate." << std::endl;
         }
        std::cout << relRate << std::endl;
 
-     // get number of Iterations
-      std::cout << "Number of Levels: ";
+     // get number of Resolution Levels
+      std::cout << "Number of Multi Resolution Levels: ";
       if( fscanf( paramFile, "%d", &resLevels) != 1 )
         {
           std::cerr << "Could not find the number of Levels." << std::endl;

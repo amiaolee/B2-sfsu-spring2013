@@ -21,7 +21,7 @@ file_read() # reading parameter file
 		    		directory=$(dirname "$LINE")
 		    		filename=$directory$filename$newext
 		    		echo "converting dicom file to .mha ...."
-		    		./DicomRead $directory $filename  # invoce the dicom series converter 
+		    		./DicomRead $directory $filename  # invoke the dicom series converter 
 		    		sed -i "s|$LINE|${filename}|g" $FILENAME
 		    		
 		    fi
@@ -58,9 +58,11 @@ if [ -z $1 ]
 			 usage
 	else
 		file_read "param.dat"
-		echo "Applying Multi Resolution Registration using param.dat parameter file ..."
+		echo ""
+		echo "Applying Multi Resolution Registration using param.dat parameter file"
 		echo "-------------------------------------------------------------------------"
 		./MultiResImageRegistrationMattes | tee registrationOutput.txt
+		./plot
 
 	fi
 else
@@ -69,10 +71,11 @@ else
 			 usage
 	else
 		file_read "$1"
-		echo "Applying Multi Resolution Registration using $1 as parameter file..."
+		echo ""
+		echo "Applying Multi Resolution Registration using $1 as parameter file"
 		echo "-------------------------------------------------------------------------"
 		./MultiResImageRegistrationMattes $1 | tee registrationOutput.txt
-
+		./plot
 	fi 
 fi
 
