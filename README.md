@@ -4,11 +4,12 @@ Intensity based 3D rigid medical image registration using mutual information max
 It is developed as a Term Project for the course CSC621-821 in Spring 2013 at San Francisco State University.
 it made use of ITK image registration modules. Basic modules used in this project includes:
 
-   1. TranslationTransform as Transformation algorithm 
-   2. LinearInterpolation as Interpolation function
-   3. RegularStepGradientDescentOptimizer as Optimizer
-   4. MattesMutaulInformationImageToImageMetric as a metric
-   5. MultiResolutionPyramidImageFilter used to speed up the convergence of the optimizer
+      1. TranslationTransform as Transformation algorithm 
+      2. LinearInterpolation as Interpolation function
+      3. RegularStepGradientDescentOptimizer as Optimizer
+      4. MattesMutaulInformationImageToImageMetric as a metric
+      5. MultiResolutionPyramidImageFilter used to speed up the convergence of the optimizer
+
 ***
 
 ###file Organization
@@ -27,6 +28,7 @@ it made use of ITK image registration modules. Basic modules used in this projec
 ***
 ###How to run 
     1. if make is used to create the executables you can use the provided shell script to run the project
+    
             ./register [parameter file] 
           
       where register is the shell script and parameter file is optional which contains the parameters to be used 
