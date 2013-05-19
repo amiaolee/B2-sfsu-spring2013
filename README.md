@@ -48,6 +48,7 @@ it made use of ITK image registration modules. Basic modules used in this projec
        before registration 3D difference after registration) in .mha format and two 2D images in png (Mosaic view before registration,
        Mosaiv view after registration) the 2D images can be viewed any image viewer application. But to view 3D volumes 
        you need to have 3D viewers like 
-            1. ITK-SNAP which can be downloaded from http://www.itksnap.org/pmwiki/pmwiki.php?n=Main.Downloads
-            2. ImageJ http://rsbweb.nih.gov/ij/download.html
-            3. paraview http://www.paraview.org/paraview/resources/software.php
+    
+    [ITK-SNAP](http://www.itksnap.org/pmwiki/pmwiki.php?n=Main.Downloads)
+    [ImageJ](http://rsbweb.nih.gov/ij/download.html)
+    [paraview](http://www.paraview.org/paraview/resources/software.php)
